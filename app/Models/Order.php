@@ -15,6 +15,12 @@ class Order extends Model
     public const STATUS_CONFIRMED = 'confirmed';
     public const STATUS_CANCELLED = 'cancelled';
 
+    public const STATUSES = [
+        self::STATUS_NEW,
+        self::STATUS_CONFIRMED,
+        self::STATUS_CANCELLED,
+    ];
+
     protected $fillable = [
         'user_id',
         'total',
