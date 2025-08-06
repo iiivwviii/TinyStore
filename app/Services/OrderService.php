@@ -26,6 +26,11 @@ class OrderService
         return $orders;
     }
 
+    public static function destroy(Order $order): array
+    {
+        $order->delete();
+        return ['message' => "Order (ID: {$order->id}) deleted"];
+    }
     public function create(User $user, array $data): Order
     {
         return DB::transaction(function () use ($user, $data) {
@@ -65,8 +70,6 @@ class OrderService
             $order->total = $total;
             $order->save();
             $order->items()->saveMany($items);
-
-            Log::info("Order {$order->id} created for user {$user->id} with total {$total}");
 
             return $order;
         });

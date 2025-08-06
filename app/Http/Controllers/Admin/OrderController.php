@@ -31,7 +31,8 @@ class OrderController extends Controller
 
     public function destroy(Order $order)
     {
-        $order->delete();
-        return response()->json(['message' => "Order (ID: {$order->id}) deleted"]);
+        $res = OrderService::destroy($order);
+
+        return response()->json($res);
     }
 }

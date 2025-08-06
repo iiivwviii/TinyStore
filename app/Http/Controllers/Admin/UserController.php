@@ -12,7 +12,6 @@ class UserController extends Controller
     public function index(): AnonymousResourceCollection
     {
         $users = User::where('is_admin', false)->paginate();
-
         return UserResource::collection($users);
     }
 }
