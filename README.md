@@ -1,4 +1,4 @@
-<p align="center"><img src="public/docs/icons/cafe.png" width="300" alt="Laravel Logo"></p><a id='links'></a>
+<p align="center"><img src="public/docs/icons/logo.png" width="300" alt="Laravel Logo"></p><a id='links'></a>
 
 # <p align="center">TinyStore</p>
 
