@@ -40,7 +40,7 @@
 ### Технические особенности
 - **Логирование** всех действий с заказами (`storage/logs/orders.log`)
 - **Пагинация** для всех списков
-- **Фильтрация** и **сортировка** для заказов
+- **Фильтрация** и **сортировка** для продуктов
 
 ## <img src="public/docs/icons/route.png" width="35" align="absmiddle"> Маршруты <a id='routes'></a> [<img src="public/docs/icons/up.png" width="20" align="absmiddle">](#links)
 
