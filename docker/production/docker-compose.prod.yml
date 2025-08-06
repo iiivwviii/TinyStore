@@ -22,7 +22,7 @@ services:
             - './database/schema/init.sql:/docker-entrypoint-initdb.d/dump.sql'
     nginx:
       image: nginx:alpine
-      ports:
+      expose:
         - '${APP_PORT:-80}:80'
       volumes:
         - ./docker/nginx/conf.d:/etc/nginx/conf.d
