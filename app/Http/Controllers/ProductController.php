@@ -12,9 +12,9 @@ class ProductController extends Controller
     public function index(ProductFilterRequest $request): AnonymousResourceCollection
     {
         $products = Product::query()
-            ->when($request->category_id, fn($q) => $q->where('category_id', $request->category_id))
-            ->when($request->search, fn($q) => $q->where('name', 'like', "%{$request->search}%"))
-            ->when($request->sort === 'name', fn($q) => $q->orderBy('name'))
+            ->filterByCategoryId($request->category_id)
+            ->filterByProductName($request->name)
+            ->sortByName($request->sort)
             ->with('category')
             ->paginate();
 

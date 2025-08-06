@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\Admin\UpdateOrderRequest;
+use App\Http\Requests\DeleteOrderRequest;
+use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Models\Order;
 use App\Services\OrderService;
@@ -27,5 +28,11 @@ class OrderController extends Controller
         $this->orderService->updateStatus($order, $request->status);
 
         return new OrderResource($order->load(['user', 'items.product']));
+    }
+
+    public function destroy(Order $order)
+    {
+        $order->delete();
+        return response()->json(['message' => "Order (ID: {$order->id}) deleted"]);
     }
 }

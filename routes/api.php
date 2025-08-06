@@ -37,5 +37,6 @@ Route::prefix('admin')->group(function () {
         Route::get('/users', [UserController::class, 'index']);
         Route::get('/orders', [AdminOrderController::class, 'index']);
         Route::put('/orders/{order}', [AdminOrderController::class, 'update']);
+        Route::delete('/destroy', [AdminOrderController::class, 'destroy']);
     });
 });
