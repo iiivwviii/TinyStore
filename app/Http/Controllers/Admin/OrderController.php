@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Http\Requests\DeleteOrderRequest;
 use App\Http\Requests\UpdateOrderRequest;
 use App\Http\Resources\OrderResource;
 use App\Models\Order;
@@ -18,9 +17,9 @@ class OrderController extends Controller
 
     public function index(): AnonymousResourceCollection
     {
-        $orders = Order::with(['user', 'items.product'])->paginate();
+        $res = OrderService::indexAdmin();
 
-        return OrderResource::collection($orders);
+        return OrderResource::collection($res);
     }
 
     public function update(UpdateOrderRequest $request, Order $order): OrderResource

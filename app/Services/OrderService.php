@@ -6,11 +6,26 @@ use App\Models\Order;
 use App\Models\OrderItem;
 use App\Models\Product;
 use App\Models\User;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 
 class OrderService
 {
+    public static function indexCustomer(): LengthAwarePaginator
+    {
+        $orders = Order::where('user_id', auth()->id())->with('items.product')->paginate();
+
+        return $orders;
+    }
+
+    public static function indexAdmin(): LengthAwarePaginator
+    {
+        $orders = Order::with(['user', 'items.product'])->paginate();
+
+        return $orders;
+    }
+
     public function create(User $user, array $data): Order
     {
         return DB::transaction(function () use ($user, $data) {

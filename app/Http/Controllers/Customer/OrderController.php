@@ -17,9 +17,9 @@ class OrderController extends Controller
 
     public function index(): AnonymousResourceCollection
     {
-        $orders = Order::where('user_id', auth()->id())->with('items.product')->paginate();
+        $res = OrderService::indexCustomer();
 
-        return OrderResource::collection($orders);
+        return OrderResource::collection($res);
     }
 
     public function store(CreateOrderRequest $request): OrderResource
