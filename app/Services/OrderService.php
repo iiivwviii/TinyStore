@@ -29,9 +29,12 @@ class OrderService
     public static function destroy(Order $order): array
     {
         $order->delete();
-        return ['message' => "Order (ID: {$order->id}) deleted"];
+
+        return [
+            'message' => "Order (ID: {$order->id}) deleted"
+        ];
     }
-    public function create(User $user, array $data): Order
+    public static function create(User $user, array $data): Order
     {
         return DB::transaction(function () use ($user, $data) {
             $order = new Order([
@@ -75,7 +78,7 @@ class OrderService
         });
     }
 
-    public function updateStatus(Order $order, string $status): void
+    public static function updateStatus(Order $order, string $status): void
     {
         DB::transaction(function () use ($order, $status) {
             $oldStatus = $order->status;

@@ -11,10 +11,6 @@ use Illuminate\Http\Resources\Json\AnonymousResourceCollection;
 
 class OrderController extends Controller
 {
-    public function __construct(private OrderService $orderService)
-    {
-    }
-
     public function index(): AnonymousResourceCollection
     {
         $res = OrderService::indexCustomer();
@@ -24,7 +20,7 @@ class OrderController extends Controller
 
     public function store(CreateOrderRequest $request): OrderResource
     {
-        $order = $this->orderService->create(auth()->user(), $request->validated());
+        $order = OrderService::create(auth()->user(), $request->validated());
 
         return new OrderResource($order->load('items.product'));
     }

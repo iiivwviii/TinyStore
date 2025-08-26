@@ -13,12 +13,14 @@ class AdminAuthController extends Controller
     public function login(LoginRequest $request): JsonResponse
     {
         $res = AdminAuthService::login($request);
+
         return response()->json($res);
     }
 
     public function logout(Request $request): JsonResponse
     {
         $res = AdminAuthService::logout($request);
+
         return response()->json($res);
     }
 }

@@ -16,7 +16,7 @@ class AdminAuthService
 
         if (!$user || !Hash::check($request->password, $user->password)) {
             throw ValidationException::withMessages([
-                'email' => ['The provided credentials are incorrect.'],
+                'email' => 'The provided credentials are incorrect.',
             ]);
         }
 
@@ -32,6 +32,9 @@ class AdminAuthService
     public static function logout(Request $request): array
     {
         $request->user()->currentAccessToken()->delete();
-        return ['message' => 'Logged out'];
+
+        return [
+            'message' => 'Logged out'
+        ];
     }
 }
