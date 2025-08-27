@@ -11,9 +11,11 @@ use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
 // Public routes
-Route::get('/categories', [CategoryController::class, 'index']);
-Route::get('/products', [ProductController::class, 'index']);
-Route::get('/products/{product}', [ProductController::class, 'show']);
+Route::prefix('public')->group(function () {
+    Route::get('/categories', [CategoryController::class, 'index']);
+    Route::get('/products', [ProductController::class, 'index']);
+    Route::get('/products/{product}', [ProductController::class, 'show']);
+});
 
 // Customer auth routes
 Route::prefix('customer')->group(function () {
