@@ -41,6 +41,11 @@
 - **Логирование** всех действий с заказами (`storage/logs/orders.log`)
 - **Пагинация** для всех списков
 - **Фильтрация** и **сортировка** для продуктов
+- **type hints**
+- **Ответы через Resources**
+- **Валидация через Requests**
+- **Логирование через Observers**
+- **Бизнес логика в представлена в Services**
 
 ## <img src="public/docs/icons/route.png" width="35" align="absmiddle"> Маршруты <a id='routes'></a> [<img src="public/docs/icons/up.png" width="20" align="absmiddle">](#links)
 
