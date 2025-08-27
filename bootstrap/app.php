@@ -3,6 +3,11 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Foundation\Configuration\Exceptions;
 use Illuminate\Foundation\Configuration\Middleware;
+use Illuminate\Validation\ValidationException;
+use Symfony\Component\HttpKernel\Exception\MethodNotAllowedHttpException;
+use Symfony\Component\Routing\Exception\RouteNotFoundException;
+use Illuminate\Database\QueryException;
+
 
 return Application::configure(basePath: dirname(__DIR__))
     ->withRouting(
@@ -18,5 +23,24 @@ return Application::configure(basePath: dirname(__DIR__))
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions): void {
-        //
+        $exceptions->render(function (MethodNotAllowedHttpException $e, Request $request) {
+            return response()->json([
+                'error' => 'Method is not supported.'
+            ], 401);
+        });
+        $exceptions->render(function (RouteNotFoundException $e, Request $request) {
+            return response()->json([
+                'error' => 'Invalid endpoint or unauthorized access.'
+            ], 409);
+        });
+        $exceptions->render(function (ValidationException $e, Request $request) {
+            return response()->json([
+                'error' => $e->validator->errors()->first()
+            ], 422);
+        });
+        $exceptions->render(function (QueryException $e, Request $request) {
+            return response()->json([
+                'error' => 'Table not found.'
+            ], 503);
+        });
     })->create();
